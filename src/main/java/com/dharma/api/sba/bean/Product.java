@@ -1,8 +1,10 @@
 package com.dharma.api.sba.bean;
 import javax.persistence.*;
+import java.io.Serializable;
+
 @Entity
 @Table(name = "product")
-public class Product {
+public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -15,10 +17,6 @@ public class Product {
     public Product(){
 
     }
-
-
-
-
     public Product(String name, Double price) {
         this.name = name;
         this.price = price;
