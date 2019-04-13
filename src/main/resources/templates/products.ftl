@@ -16,7 +16,7 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>NAEM</th>
+                    <th>NAME</th>
                     <th>#PRICE</th>
                 </tr>
             </thead>
