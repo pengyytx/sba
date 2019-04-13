@@ -15,6 +15,8 @@ public class Comment {
 
     private String comment;
 
+    private Integer star;
+
     private Date createDate =  new Date();
 
     private Map<String, String> tags = new HashMap<>();
@@ -22,30 +24,41 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(String id, String comment) {
+    public Comment(String id, String comment,Integer star) {
         this.id = id;
         this.comment = comment;
+        this.star = star;
     }
 
-    public Comment(String id, String comment, Date createDate, Map<String, String> tags) {
+    public Comment(String id, String comment, Date createDate, Map<String, String> tags,Integer star) {
         this.id = id;
         this.comment = comment;
         this.createDate = createDate;
         this.tags = tags;
+        this.star = star;
     }
-    public Comment(String id, String comment, Map<String, String> tags) {
+    public Comment(String id, String comment, Map<String, String> tags,Integer star) {
         this.id = id;
         this.comment = comment;
         this.tags = tags;
+        this.star = star;
     }
 
-    public Comment(String id, String comment, Date createDate) {
+    public Comment(String id, String comment, Date createDate,Integer star) {
         this.id = id;
         this.comment = comment;
         this.createDate = createDate;
+        this.star = star;
     }
 
 
+    public Integer getStar() {
+        return star;
+    }
+
+    public void setStar(Integer star) {
+        this.star = star;
+    }
 
     public String getId() {
         return id;

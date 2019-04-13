@@ -60,4 +60,10 @@ public class CommentController  {
     public String addTag(@PathVariable String commentId,@PathVariable String key,@PathVariable String value){
         return commentDal.addTag(commentId,key,value);
     }
+
+
+    @GetMapping("/stats/star")
+    public String countStar(){
+        return commentDal.starAnalysis();
+    }
 }

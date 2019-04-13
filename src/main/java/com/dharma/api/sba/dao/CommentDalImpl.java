@@ -1,8 +1,11 @@
 package com.dharma.api.sba.dao;
 
 import com.dharma.api.sba.bean.Comment;
+import com.dharma.api.sba.bean.KeyValuePair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.mapreduce.MapReduceOptions;
+import org.springframework.data.mongodb.core.mapreduce.MapReduceResults;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
@@ -50,5 +53,24 @@ public class CommentDalImpl implements CommentDal{
         }else{
             return "comment not found";
         }
+    }
+
+    @Override
+    public String starAnalysis() {
+        final String map = "function() {emit(this.star,1);}";
+        final String reduce = "function(name,count) {return Array.sum(count);}";
+
+        MapReduceOptions options = MapReduceOptions.options();
+        options.outputCollection("counterStar");
+        options.outputTypeReduce();
+
+        MapReduceResults<KeyValuePair> results = mongoTemplate
+                .mapReduce("comment",map,reduce,KeyValuePair.class);
+        StringBuilder stats = new StringBuilder();
+        for(KeyValuePair result:results){
+            stats.append(result.toString());
+        }
+        return stats.toString();
+
     }
 }

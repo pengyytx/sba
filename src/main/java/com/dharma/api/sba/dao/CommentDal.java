@@ -16,6 +16,8 @@ public interface CommentDal {
 
     String addTag(String id,String key,String value);
 
+    String starAnalysis();
+
     //删除
 
     //修改
